@@ -1,0 +1,20 @@
+{
+    "schemaVersion": 1,
+    "id": "golem-targets",
+    "version": "${version}",
+    "name": "Golem Targets",
+    "description": "Make Iron and Snow Golems attack specific players!",
+    "authors": [],
+    "contact": {},
+    "license": "All-Rights-Reserved",
+    "icon": "assets/golem-targets/icon.png",
+    "environment": "*",
+    "mixins": [
+        "golem-targets.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${loader_version}",
+        "fabric-language-kotlin": ">=${kotlin_loader_version}",
+        "minecraft": "${minecraft_version}"
+    }
+}
