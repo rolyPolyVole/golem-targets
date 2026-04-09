@@ -1,4 +1,4 @@
-package dev.rolypolyvole.golemtargets;
+package dev.rolypolyvole.golemtargets.util;
 
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;

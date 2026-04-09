@@ -1,6 +1,6 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
-import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
+import dev.rolypolyvole.golemtargets.util.GolemTargetAccessor;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.damagesource.DamageSource;

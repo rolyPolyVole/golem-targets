@@ -1,6 +1,6 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
-import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
+import dev.rolypolyvole.golemtargets.util.GolemTargetAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;

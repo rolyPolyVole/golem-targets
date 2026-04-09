@@ -1,4 +1,4 @@
-package dev.rolypolyvole.golemtargets;
+package dev.rolypolyvole.golemtargets.config;
 
 import net.fabricmc.loader.api.FabricLoader;
 

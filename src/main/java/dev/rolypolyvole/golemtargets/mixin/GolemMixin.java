@@ -1,6 +1,6 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
-import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
+import dev.rolypolyvole.golemtargets.util.GolemTargetAccessor;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
