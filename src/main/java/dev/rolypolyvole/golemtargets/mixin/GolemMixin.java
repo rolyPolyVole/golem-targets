@@ -1,6 +1,7 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
 import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,6 +26,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.UUID;
+
 @Mixin({IronGolem.class, SnowGolem.class})
 public abstract class GolemMixin extends AbstractGolem {
 
@@ -35,6 +38,9 @@ public abstract class GolemMixin extends AbstractGolem {
     @Inject(method = "mobInteract", at = @At("HEAD"), cancellable = true)
     private void golemTargets$onInteract(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> info) {
         if (!player.isShiftKeyDown()) return;
+
+        UUID owner = ((GolemTargetAccessor) this).golemTargets$getOwnerUUID();
+        if (owner != null && !player.getUUID().equals(owner)) return;
 
         SimpleContainer container = ((GolemTargetAccessor) this).golemTargets$getContainer();
         ItemStack stack = player.getItemInHand(hand);
@@ -64,7 +70,14 @@ public abstract class GolemMixin extends AbstractGolem {
 
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     private void golemTargets$saveTags(ValueOutput valueOutput, CallbackInfo ci) {
-        SimpleContainer container = ((GolemTargetAccessor) this).golemTargets$getContainer();
+        GolemTargetAccessor accessor = (GolemTargetAccessor) this;
+
+        UUID owner = accessor.golemTargets$getOwnerUUID();
+        if (owner != null) {
+            valueOutput.store("GolemTargetsOwner", UUIDUtil.CODEC, owner);
+        }
+
+        SimpleContainer container = accessor.golemTargets$getContainer();
         ValueOutput.ValueOutputList list = valueOutput.childrenList("GolemTargets");
         for (int i = 0; i < container.getContainerSize(); i++) {
             ItemStack stack = container.getItem(i);
@@ -74,6 +87,12 @@ public abstract class GolemMixin extends AbstractGolem {
                 child.store("Item", ItemStack.CODEC, stack);
             }
         }
+    }
+
+    @Inject(method = "readAdditionalSaveData", at = @At("HEAD"))
+    private void golemTargets$loadOwner(ValueInput valueInput, CallbackInfo ci) {
+        GolemTargetAccessor accessor = (GolemTargetAccessor) this;
+        valueInput.read("GolemTargetsOwner", UUIDUtil.CODEC).ifPresent(accessor::golemTargets$setOwnerUUID);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
@@ -88,5 +107,4 @@ public abstract class GolemMixin extends AbstractGolem {
             }
         }
     }
-
 }
