@@ -12,6 +12,7 @@ import net.minecraft.world.item.Items;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("DataFlowIssue")
 public class GolemTargetGoal extends TargetGoal {
 
     private final AbstractGolem golem;

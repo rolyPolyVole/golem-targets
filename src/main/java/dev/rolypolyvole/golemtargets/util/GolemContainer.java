@@ -3,6 +3,7 @@ package dev.rolypolyvole.golemtargets.util;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import org.jspecify.annotations.NonNull;
 
 public class GolemContainer extends SimpleContainer {
 
@@ -14,7 +15,7 @@ public class GolemContainer extends SimpleContainer {
     }
 
     @Override
-    public boolean stillValid(Player player) {
+    public boolean stillValid(@NonNull Player player) {
         return golem.isAlive() && player.distanceToSqr(golem) <= 64.0;
     }
 }

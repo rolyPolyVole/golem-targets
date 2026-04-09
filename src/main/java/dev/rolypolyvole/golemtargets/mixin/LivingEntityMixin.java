@@ -17,10 +17,12 @@ public abstract class LivingEntityMixin {
     @Inject(method = "die", at = @At("HEAD"))
     private void golemTargets$onDeath(DamageSource source, CallbackInfo ci) {
         if (!((Object) this instanceof GolemTargetAccessor accessor)) return;
+
         LivingEntity self = (LivingEntity) (Object) this;
 
         if (self.level() instanceof ServerLevel serverLevel) {
             SimpleContainer container = accessor.golemTargets$getContainer();
+
             for (int i = 0; i < container.getContainerSize(); i++) {
                 ItemStack stack = container.getItem(i);
                 if (!stack.isEmpty()) {

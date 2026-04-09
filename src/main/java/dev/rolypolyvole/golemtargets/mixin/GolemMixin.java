@@ -71,14 +71,15 @@ public abstract class GolemMixin extends AbstractGolem {
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     private void golemTargets$saveTags(ValueOutput valueOutput, CallbackInfo ci) {
         GolemTargetAccessor accessor = (GolemTargetAccessor) this;
-
         UUID owner = accessor.golemTargets$getOwnerUUID();
+
         if (owner != null) {
             valueOutput.store("GolemTargetsOwner", UUIDUtil.CODEC, owner);
         }
 
         SimpleContainer container = accessor.golemTargets$getContainer();
         ValueOutput.ValueOutputList list = valueOutput.childrenList("GolemTargets");
+
         for (int i = 0; i < container.getContainerSize(); i++) {
             ItemStack stack = container.getItem(i);
             if (!stack.isEmpty()) {
@@ -98,6 +99,7 @@ public abstract class GolemMixin extends AbstractGolem {
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     private void golemTargets$loadTags(ValueInput valueInput, CallbackInfo ci) {
         SimpleContainer container = ((GolemTargetAccessor) this).golemTargets$getContainer();
+
         for (ValueInput child : valueInput.childrenListOrEmpty("GolemTargets")) {
             int slot = child.getByteOr("Slot", (byte) 0) & 255;
             if (slot < container.getContainerSize()) {
