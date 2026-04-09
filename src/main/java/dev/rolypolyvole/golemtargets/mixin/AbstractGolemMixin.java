@@ -1,5 +1,6 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
+import dev.rolypolyvole.golemtargets.GolemContainer;
 import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
 import dev.rolypolyvole.golemtargets.GolemTargetGoal;
 import net.minecraft.world.SimpleContainer;
@@ -46,7 +47,7 @@ public abstract class AbstractGolemMixin extends PathfinderMob implements GolemT
 
     @Inject(method = "<init>", at = @At("RETURN"))
     private void golemTargets$init(EntityType<?> entityType, Level level, CallbackInfo ci) {
-        this.golemTargets$container = new SimpleContainer(5);
+        this.golemTargets$container = new GolemContainer(this, 5);
         this.targetSelector.addGoal(0, new GolemTargetGoal((AbstractGolem) (Object) this));
     }
 }
