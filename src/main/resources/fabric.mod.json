@@ -7,7 +7,7 @@
     "authors": [],
     "contact": {},
     "license": "All-Rights-Reserved",
-    "icon": "assets/golem-targets/icon.png",
+    "icon": "golem_targets_logo.png",
     "environment": "*",
     "entrypoints": {
         "main": [
