@@ -11,7 +11,7 @@ version = ProcessBuilder("git", "describe", "--tags", "--always", "--dirty")
     .inputStream
     .bufferedReader()
     .readText()
-    .trim()
+    .trim() + "+${project.property("minecraft_version")}"
 
 base {
     archivesName.set(project.property("archives_base_name") as String)
