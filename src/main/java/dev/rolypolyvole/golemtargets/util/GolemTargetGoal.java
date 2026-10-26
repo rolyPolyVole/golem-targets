@@ -1,5 +1,6 @@
-package dev.rolypolyvole.golemtargets;
+package dev.rolypolyvole.golemtargets.util;
 
+import dev.rolypolyvole.golemtargets.config.GolemTargetsConfig;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.ai.goal.target.TargetGoal;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.Items;
 import java.util.HashSet;
 import java.util.Set;
 
+@SuppressWarnings("DataFlowIssue")
 public class GolemTargetGoal extends TargetGoal {
 
     private final AbstractGolem golem;

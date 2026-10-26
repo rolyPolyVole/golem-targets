@@ -1,6 +1,6 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
-import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
+import dev.rolypolyvole.golemtargets.util.GolemTargetAccessor;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -19,7 +19,13 @@ public abstract class CarvedPumpkinBlockMixin {
     private static void golemTargets$onSpawnGolem(Level level, BlockPattern.BlockPatternMatch match, Entity entity, BlockPos blockPos, CallbackInfo ci) {
         if (!(entity instanceof GolemTargetAccessor accessor)) return;
 
-        Player nearest = level.getNearestPlayer(blockPos.getX() + 0.5, blockPos.getY() + 0.05, blockPos.getZ() + 0.5, 5.0, false);
+        Player nearest = level.getNearestPlayer(
+            blockPos.getX() + 0.5,
+            blockPos.getY() + 0.05,
+            blockPos.getZ() + 0.5,
+            5.0, false
+        );
+
         if (nearest != null) {
             accessor.golemTargets$setOwnerUUID(nearest.getUUID());
         }

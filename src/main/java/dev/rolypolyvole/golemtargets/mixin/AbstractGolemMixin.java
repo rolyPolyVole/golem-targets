@@ -1,8 +1,8 @@
 package dev.rolypolyvole.golemtargets.mixin;
 
-import dev.rolypolyvole.golemtargets.GolemContainer;
-import dev.rolypolyvole.golemtargets.GolemTargetAccessor;
-import dev.rolypolyvole.golemtargets.GolemTargetGoal;
+import dev.rolypolyvole.golemtargets.util.GolemContainer;
+import dev.rolypolyvole.golemtargets.util.GolemTargetAccessor;
+import dev.rolypolyvole.golemtargets.util.GolemTargetGoal;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
